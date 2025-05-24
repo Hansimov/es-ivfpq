@@ -50,13 +50,7 @@ gradle wrapper --gradle-version 8.14.1
 
 ```sh
 ./gradlew clean assemble
-./gradlew compileJava
-```
-
-or with refresh dependencies:
-
-```sh
-./gradlew --refresh-dependencies clean assemble
+# ./gradlew --refresh-dependencies clean assemble
 ```
 
 ## Load commands

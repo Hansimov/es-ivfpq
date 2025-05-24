@@ -6,30 +6,32 @@ import org.elasticsearch.rest.RestRequest;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.rest.RestResponse;
 import org.elasticsearch.xcontent.XContentBuilder;
+import org.elasticsearch.xcontent.XContentFactory;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.elasticsearch.rest.RestRequest.Method.GET;
-
+/**
+ * Handles GET /_plugin/ivfpq/version
+ */
 public class RestGetVersionAction extends BaseRestHandler {
     @Override
     public String getName() {
-        return "get_version_action";
+        return "ivfpq_version";
     }
 
     @Override
     public List<Route> routes() {
-        return List.of(new Route(GET, "/ivfpq_version"));
+        return List.of(new Route(RestRequest.Method.GET, "/_plugin/ivfpq/version"));
     }
 
     @Override
     protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) throws IOException {
         return channel -> {
-            XContentBuilder builder = channel.newBuilder();
+            XContentBuilder builder = XContentFactory.jsonBuilder();
             builder.startObject();
-            builder.field("plugin", "es-ivfpq");
-            builder.field("version", "0.0.1");
+            builder.field("name", "ivfpq");
+            builder.field("version", GetVersionPlugin.VERSION);
             builder.endObject();
             channel.sendResponse(new RestResponse(RestStatus.OK, builder));
         };
