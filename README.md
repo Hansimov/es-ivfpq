@@ -59,6 +59,21 @@ or with refresh dependencies:
 ./gradlew --refresh-dependencies clean assemble
 ```
 
+## Load commands
+
+See: [`load.sh`](./load.sh)
+
+Load plugin to elasticsearch:
+
+```sh
+./load.sh
+```
+
+Check if plugin is loaded:
+
+```sh
+curl --cacert $HOME/elasticsearch-docker/certs/ca/ca.crt -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:19200/_cat/plugins?v"
+```
 
 ## References
 
