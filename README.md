@@ -1,6 +1,68 @@
-# References
+# ES-IVFPQ Plugin
 
-## IVF-PQ
+## Installations
+
+### Install Java 17
+
+```sh
+sudo apt update && sudo apt install -y openjdk-17-jdk
+```
+
+Set `JAVA_HOME` in `~/.bashrc`:
+
+```sh
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+Check version:
+
+```sh
+java -version
+javac -version
+```
+
+### Install gradle
+
+```sh
+cd downloads
+wget https://githubfast.com/gradle/gradle-distributions/releases/download/v8.14.1/gradle-8.14.1-bin.zip
+unzip gradle-8.14.1-bin.zip -d ~
+```
+
+Add following line to `~/.bashrc`:
+
+```sh
+export PATH=$HOME/gradle-8.14.1/bin:$PATH
+```
+
+Check version:
+
+```sh
+gradle -v
+```
+
+## Build commands
+
+```sh
+gradle wrapper --gradle-version 8.14.1
+```
+
+```sh
+./gradlew clean assemble
+./gradlew compileJava
+```
+
+or with refresh dependencies:
+
+```sh
+./gradlew --refresh-dependencies clean assemble
+```
+
+
+## References
+
+### IVF-PQ
 
 * Product Quantization: Compressing high-dimensional vectors by 97% | Pinecone
   * https://www.pinecone.io/learn/series/faiss/product-quantization
@@ -24,7 +86,7 @@
   * https://docs.rapids.ai/api/cuvs/stable/indexes/ivfpq/
 
 
-## Faiss
+### Faiss
 
 * Implementation notes · facebookresearch/faiss Wiki
   * https://github.com/facebookresearch/faiss/wiki/Implementation-notes
@@ -42,7 +104,7 @@
   * https://github.com/facebookresearch/faiss/blob/main/tutorial/python/3-IVFPQ.py
 
 
-## Elastic Plugin
+### Elastic Plugin
 
 * Creating text analysis plugins with the stable plugin API | Elastic Documentation
   * https://www.elastic.co/docs/extend/elasticsearch/creating-stable-plugins
